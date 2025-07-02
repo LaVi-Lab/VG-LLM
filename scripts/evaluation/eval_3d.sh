@@ -11,8 +11,7 @@ if [ "$benchmark" = "scanrefer" ]; then
     model_args_str="${model_args_str},add_frame_index=true"
 fi
 
-export CUDA_VISIBLE_DEVICES=0
-accelerate launch --num_processes=1  --main_process_port 29501 -m lmms_eval \
+accelerate launch --num_processes=8  --main_process_port 29501 -m lmms_eval \
     --model vgllm \
     --model_args "$model_args_str" \
     --tasks ${benchmark} \
